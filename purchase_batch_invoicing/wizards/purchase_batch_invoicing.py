@@ -91,6 +91,7 @@ class PurchaseBatchInvoicing(models.TransientModel):
                 invoice.currency_id = po.currency_id
                 invoice.purchase_id = po
                 invoice.purchase_order_change()
+                invoice.compute_taxes()
             invoices |= invoice
         if not invoices:
             raise UserError(_("No ready-to-invoice purchase orders selected."))
